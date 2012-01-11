@@ -108,6 +108,7 @@ if args:
         print "%s : %s" % ("Priority".rjust(16), issue["issue"]["priority"]["name"])
         print "%s : %s" % ("Tracker".rjust(16), issue["issue"]["tracker"]["name"])
         print "%s : %d%%" % ("Done Ratio".rjust(16), issue["issue"]["done_ratio"])
+        print "%s : %s" % ("Author".rjust(16), issue["issue"]["author"]["name"])
         print "%s : %s" % ("Assigned To".rjust(16), issue["issue"]["assigned_to"]["name"])
         print "%s : %s" % ("Subject".rjust(16), issue["issue"]["subject"])
         print "------"
@@ -120,6 +121,6 @@ j = json.loads(data)
 issues = j["issues"]
 issues.sort(cmp=lambda x,y: cmp(y["priority"]["id"], x["priority"]["id"]))
 for issue in issues:
-    print "%3d%% %s %s [%s] %s" % (issue["done_ratio"], issue["priority"]["id"], ('#%d' % issue["id"]).ljust(5), issue["status"]["name"], issue["subject"])
+    print "%3d%% %s %s [%s(%s)] %s" % (issue["done_ratio"], issue["priority"]["id"], ('#%d' % issue["id"]).ljust(5), issue["status"]["name"], issue["status"]["id"], issue["subject"])
 
 quit(0)
