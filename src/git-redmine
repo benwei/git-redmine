@@ -121,6 +121,17 @@ j = json.loads(data)
 issues = j["issues"]
 issues.sort(cmp=lambda x,y: cmp(y["priority"]["id"], x["priority"]["id"]))
 for issue in issues:
-    print "%3d%% %s %s [%s(%s)] %s" % (issue["done_ratio"], issue["priority"]["id"], ('#%d' % issue["id"]).ljust(5), issue["status"]["name"], issue["status"]["id"], issue["subject"])
+    #print json.dumps(issue, indent=2)
+    assigned_to_name='NA'
+    try:
+	assigned_to_name=issue["assigned_to"]["name"]
+    except:
+	pass
+
+    status_msg = ("%s (%s)" % (issue["status"]["name"], issue["status"]["id"])).ljust(16)
+    status_msg = ("%s" % (issue["status"]["name"])).ljust(11)
+
+    print "%3d%% %s %s [%s][%s] %s" % (issue["done_ratio"], issue["priority"]["id"], ('#%d' % issue["id"]).ljust(5),
+	  			      status_msg, assigned_to_name.ljust(11), issue["subject"])
 
 quit(0)
