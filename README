@@ -27,3 +27,7 @@ $ git redmine 1234
 * Commit using with commit message consist on the issue subject and issue ID
 $ git redmine commit 1234
 
+* Commit with status id Samples
+$ git redmine commit 1234 --status 4
+
+(note: 4 - status-resolved)
